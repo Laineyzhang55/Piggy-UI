@@ -1,0 +1,122 @@
+.container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 10px 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.carousel {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.carousel .panels>a {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 18px;
+  z-index: 1;
+}
+
+.carousel .panels>a.active {
+  z-index: 10;
+}
+
+.carousel .panels>a:nth-child(even) {
+  background-color: lightblue;
+}
+
+.carousel .panels>a:nth-child(odd) {
+  background-color: lightpink;
+}
+
+.carousel .arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 36px;
+  width: 36px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: rgba(31, 45, 61, .11);
+  cursor: pointer;
+  opacity: 0;
+  transition: all .4s;
+}
+
+.carousel .btn-pre {
+  left: 10px;
+  transform: translateX(-10px) translateY(-50%);
+}
+
+.carousel:hover .btn-pre {
+  opacity: 1;
+  transform: translateX(0) translateY(-50%);
+}
+
+.carousel .btn-next {
+  right: 10px;
+  transform: translateX(10px) translateY(-50%);
+}
+
+.carousel:hover .btn-next {
+  opacity: 1;
+  transform: translateX(0px) translateY(-50%);
+}
+
+.carousel .arrow::before {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid #fff;
+  border-left: 3px solid #fff;
+}
+
+.carousel .btn-pre::before {
+  transform: rotate(-45deg);
+}
+
+.carousel .btn-next::before {
+  transform: rotate(135deg);
+}
+
+.carousel .indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  z-index: 100;
+  transform: translateX(-50%);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel .indicators>li {
+  display: inline-block;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.carousel .indicators>li::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2px;
+  border-radius: 2px;
+  background: #c0c4cc;
+}
+
+.carousel .indicators>li.active::before {
+  background: #fff;
+}

@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piggy UI</title>
+  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="//at.alicdn.com/t/font_1837482_j9h03mw43u.css">
+</head>
+<body>
+  <div id="home">
+    <h1>Piggy <br/>
+      <span>UI</span>
+    </h1>
+    <span class="iconfont icon-nextPage"></span>
+  </div>
+  <div id="main">
+    <nav>
+      <div class="title active">弹窗提示</div>
+      <div class="title">Tooltip</div>
+      <div class="title">走马灯</div>
+      <div class="title">手风琴效果</div>
+      <div class="title">回到顶部</div>
+      <div class="title">锚点</div>
+      <div class="title">全选</div>
+    </nav>
+    <main>
+      <div class="content active">
+        <div class="show">
+          <h2>效果展示</h2>
+          <link rel="stylesheet" href="./styles/dialog.css">
+          <div class="page">
+            <h2>dialog</h2>
+            <button class="reminder">弹出提示</button>
+          <div class="dialog">
+            <div class="main">
+              <div class="header">提示<button class="close"></button></div>
+              <div class="text">
+                <p>这是一段文字</p>
+              </div>
+              <div class="footer">
+                <button class="button btn-cancel">取消</button>
+                <button class="button btn-confirm">确认</button>
+              </div>
+            </div>  
+          </div>
+          </div>
+          <button class="showCode">展示/隐藏代码</button>
+        </div>
+      <div class="display_components">
+        <div class="control">
+          <button class="click btn-h active">HTML</button>
+          <button class="click btn-c">CSS</button>
+          <button class="click btn-j">JS</button>
+        </div>
+        <div class="code">
+          <pre class="html code_block">
+            &ltdiv class="page"&gt
+              &lth2&gtdialog&lt/h2&gt
+              &ltbutton class="reminder"&gt弹出提示&lt/button&gt
+                &ltdiv class="dialog"&gt
+                &ltdiv class="main"&gt
+                  &ltdiv class="header"&gt提示&ltbutton class="close"&gt &lt/button&gt &lt/div&gt
+                  &ltdiv class="content"&gt
+                    &ltp&gt 这是一段文字 &lt/p&gt
+                  &lt/div&gt
+                  &ltdiv class="footer"&gt
+                    &ltbutton class="button btn-cancel"&gt取消&lt/button&gt
+                    &ltbutton class="button btn-confirm"&lt确认&gt/button&gt
+                  &lt/div&gt
+                &lt/div&gt
+              &lt/div&gt
+            &lt/div&gt
+          </pre>
+          <pre class="css code_block">
+            .page{
+              max-width: 800px;
+              margin: 30px auto;
+              padding: 16px;
+              border-radius: 4px;
+              box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+            }
+            .page button{
+              padding: 8px 16px;
+              font-size: 14px;
+              font-weight: 500;
+              color: #303030;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              outline: none;
+              cursor: pointer;
+              position: relative;
+            }
+            .page button:hover{
+              color: lightblue;
+              border: 1px solid lightblue;
+            }
+            .dialog{
+              position: fixed;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background-color: rgba(0,0,0, 0.3);
+              display: none;
+              opacity: 0;
+              transition: all .3s;
+            }
+            .dialog.show{
+              display: block;
+            }
+            
+            .dialog.display{
+            opacity: 1;
+            }
+            
+            .dialog .main{
+              margin: 30px auto;
+              padding: 16px;
+              width: 60%;
+              border-radius: 6px;
+              box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.3);
+              background-color: #fff;
+              transform: translateY(-100%);
+              opacity: 0;
+              transition: all .3s;
+            }
+            
+            .dialog.display .main{
+              opacity: 1;
+              transform: translateY(40px);
+            }
+            .dialog .header{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 18px;
+            }
+            
+            .dialog .header .close{
+              margin-left: auto;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 4px;
+              outline: none;
+              border: none;
+              cursor: pointer;
+            }
+            
+            .dialog .header .close::before,
+            .dialog .header .close::after{
+              content: '';
+              position: absolute;
+              display: block;
+              height: 1px;
+              width: 13px;
+              background-color: #444;
+              transform: rotate(45deg);
+            
+            }
+            .dialog .header .close::after{
+              transform: rotate(-45deg);
+            }
+            .dialog .footer{
+              display: flex;
+              justify-content: flex-end;
+            }
+            .dialog .footer .button{
+              margin-left: 10px;
+            }
+            .dialog .footer .btn-confirm{
+              background-color: lightskyblue;
+              color: #fff;
+              border: 0;
+            }            
+          </pre>
+          <pre class="js code_block">
+            class Dialog {
+              constructor($root, options = {}) {
+                this.$root = $root
+                this.options = options
+                this.onCancel = options.onCancel || function() {}
+                this.onConfirm = options.onConfirm || function() {}
+
+                this.bind()
+              }
+
+              bind() {
+                let self = this
+                this.$root.querySelector('.close').onclick = function() {
+                  self.hide()
+                  self.onCancel()
+                }
+                this.$root.querySelector('.btn-cancel').onclick = function() {
+                  self.hide()
+                  self.onCancel()
+                }
+                this.$root.querySelector('.btn-confirm').onclick = function() {
+                  self.hide()
+                  self.onConfirm()
+                }
+              }
+
+              hide() {
+                this.$root.classList.remove('display')
+                setTimeout(() => this.$root.classList.remove('show'), 400)
+
+              }
+
+              show() {
+                this.$root.classList.add('show')
+                setTimeout(() => this.$root.classList.add('display'))
+              }
+            }
+
+            let dialog = new Dialog(document.querySelector('.dialog'), {
+              onConfirm() {
+                console.log('用户点了confirm')
+              },
+              onCancel() {
+                console.log('用户点了取消')
+              }
+            })
+
+            document.querySelector('.reminder').onclick = function() {
+              dialog.show()
+            }
+          </pre>
+        </div>
+      </div>
+      </div>
+      <div class="content">
+        <div class="show">
+          <h2>效果展示</h2>
+          <link rel="stylesheet" href="./styles/tooltip.css">
+          <div class="container">
+            <h1>Tooltip2</h1>
+            <div class="btn-group">
+              <button class="button" data-name="tooltip" data-align="top" data-text="我上内容">上</button>
+              <button class="button" data-name="tooltip" data-align="bottom" data-text="我上内容">下</button>
+              <button class="button" data-name="tooltip" data-align="left" data-text="我上内容">左</button>
+              <button class="button" data-name="tooltip" data-align="right" data-text="我上内容">右</button>
+            </div>
+          </div>
+          
+          <div class="btn">
+          </div>
+          <button class="showCode">展示/隐藏代码</button>
+        </div>
+      <div class="display_components">
+        <div class="control">
+          <button class="click btn-h active">HTML</button>
+          <button class="click btn-c">CSS</button>
+          <button class="click btn-j">JS</button>
+        </div>
+        <div class="code">
+          <pre class="html code_block">
+            &ltdiv class="container"&gt
+              &lth1&gtTooltip2&lt/h1&gt
+              &ltdiv class="btn-group"&gt
+                &ltbutton class="button" data-name="tooltip" data-align="top" data-text="我上内容"&gt上&lt/button&gt
+                &ltbutton class="button" data-name="tooltip" data-align="bottom" data-text="我上内容"&gt下&lt/button&gt
+                &ltbutton class="button" data-name="tooltip" data-align="left" data-text="我上内容"&gt左&lt/button&gt
+                &ltbutton class="button" data-name="tooltip" data-align="right" data-text="我上内容"&gt右&lt/button&gt
+              &lt/div&gt
+            &lt/div&gt
+          </pre>
+          <pre class="css code_block">
+            .container {
+              max-width: 800px;
+              margin: 0 auto;
+              padding: 16px;
+              box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3)
+            }
+            
+            .btn-group button {
+              position: relative;
+              padding: 13px 25px;
+              margin: 30px 20px;
+              border-radius: 10px;
+              border: 1px solid #ddd;
+              background-color: #fff;
+              outline: none;
+              cursor: pointer;
+            }
+            
+            .btn-group button:hover {
+              border-color: lightskyblue;
+              color: lightskyblue;
+              background-color: rgba(193, 222, 231, 0.3);
+            }
+            
+            .tooltip {
+              position: absolute;
+              z-index: 10;
+              color: #fff;
+              background-color: #000;
+              white-space: nowrap;
+              padding: 4px 6px;
+              border-radius: 4px;
+              display: none;
+            }
+            
+            .tooltip.show {
+              display: block;
+            }
+            
+            .tooltip::before {
+              content: '';
+              width: 0;
+              height: 0;
+              position: absolute;
+              border: 6px solid transparent;
+            }
+            
+            .tooltip.top {
+              bottom: calc(100% + 10px);
+              left: 50%;
+              transform: translateX(-50%);
+            }
+            
+            .tooltip.top::before {
+              border-top-color: #303030;
+              transform: translateX(-50%);
+              top: 100%;
+              left: 50%;
+            }
+            
+            .tooltip.bottom {
+              top: calc(100% + 10px);
+              left: 50%;
+              transform: translateX(-50%);
+            }
+            
+            .tooltip.bottom::before {
+              border-bottom-color: #303030;
+              transform: translateX(-50%);
+              bottom: 100%;
+              left: 50%;
+            }
+            
+            .tooltip.left {
+              right: calc(100% + 10px);
+              top: 50%;
+              transform: translateY(-50%);
+            }
+            
+            .tooltip.left::before {
+              border-left-color: #303030;
+              transform: translateY(-50%);
+              top: 50%;
+              right: -11px;
+            }
+            
+            .tooltip.right {
+              left: calc(100% + 10px);
+              top: 50%;
+              transform: translateY(-50%);
+            }
+            
+            .tooltip.right::before {
+              border-right-color: #303030;
+              transform: translateY(-50%);
+              top: 50%;
+              left: -11px;
+            }
+          </pre>
+          <pre class="js code_block">
+            class Tooltip {
+              constructor($root) {
+                this.$root = $root
+                this.$root.tooltip = this
+                this.align = $root.dataset.align
+                this.text = $root.dataset.text
+            
+                this.render()
+                this.setRoot()
+                this.show()
+              }
+            
+              render() {
+                let $tooltip = document.createElement('div')
+                $tooltip.classList.add('tooltip')
+                $tooltip.classList.add(this.align)
+                $tooltip.innerText = this.text
+                this.$tooltip = $tooltip
+                this.$root.appendChild($tooltip)
+              }
+            
+              setRoot() {
+                this.$root.showTooltip = this.show.bind(this)
+                this.$root.hideTooltip = this.hide.bind(this)
+              }
+            
+              show() {
+                this.$tooltip.classList.add('show')
+              }
+            
+              hide() {
+                this.$tooltip.classList.remove('show')
+              }
+            }
+            
+            document.querySelectorAll('[data-name="tooltip"]').forEach($node => $node.onmouseenter = function () {
+              if ($node.tooltip) {
+                $node.showTooltip()
+              } else {
+                new Tooltip(this)
+              }
+            
+              $node.onmouseleave = function () {
+                $node.hideTooltip()
+              }
+            })
+          </pre>
+        </div>
+      </div>
+
+
+      </div>
+      <div class="content">
+        <div class="show">
+          <h2>效果展示</h2>
+          <link rel="stylesheet" href="./styles/carouse.css">
+          <div class="container">
+            <h1>carousel</h1>
+            <div>
+              <select id="animation-select">
+                <option value="slide">slide</option>
+                <option value="fade">fade</option>
+                <option value="zoom">zoom</option>
+              </select>
+            </div>
+            <div class="carousel">
+              <div class="panels">
+                <a class="active" href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+              </div>
+              <div class="arrows">
+                <button class="arrow btn-pre"></button>
+                <button class="arrow btn-next"></button>
+              </div>
+                <ul class="indicators">
+                  <li class="active"></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+            </div>
+          </div>
+          <button class="showCode">展示/隐藏代码</button>
+        </div>
+      <div class="display_components">
+        <div class="control">
+          <button class="click btn-h active">HTML</button>
+          <button class="click btn-c">CSS</button>
+          <button class="click btn-j">JS</button>
+        </div>
+        <div class="code">
+          <pre class="html code_block">
+              &ltdiv&gt
+                &ltselect id="animation-select"&gt
+                  &ltoption value="slide"&gtslide&lt/option&gt
+                  &ltoption value="fade"&gtfade&lt/option&gt
+                  &ltoption value="zoom"&gtzoom&lt/option&gt
+                &lt/select&gt
+              &lt/div&gt
+              &ltdiv class="carousel"&gt
+                &ltdiv class="panels"&gt
+                  &lta class="active" href="#">1</a>
+                  &lta href="#"&gt2&lt/a&gt
+                  &lta href="#"&gt3&lt/a&gt
+                  &lta href="#"&gt4&lt/a&gt
+                &lt/div&gt
+                &ltdiv class="arrows"&gt
+                  &ltbutton class="arrow btn-pre"&gt&lt/button&gt
+                  &ltbutton class="arrow btn-next"&gt&lt/button&gt
+                &lt/div&gt
+                  &ltul class="indicators">
+                    &ltli class="active"></li>
+                    &ltli&gt&lt/li&gt
+                    &ltli&gt&lt/li&gt
+                    &ltli&gt&lt/li&gt
+                  &lt/ul&gt
+              &lt/div&gt
+            &lt/div&gt
+          </pre>
+          <pre class="css code_block">
+            .container {
+              max-width: 800px;
+              margin: 30px auto;
+              padding: 10px 20px;
+              border-radius: 6px;
+              box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+            }
+            
+            .carousel {
+              position: relative;
+              height: 200px;
+              overflow: hidden;
+            }
+            
+            .carousel .panels>a {
+              position: absolute;
+              height: 100%;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-decoration: none;
+              font-size: 18px;
+              z-index: 1;
+            }
+            
+            .carousel .panels>a.active {
+              z-index: 10;
+            }
+            
+            .carousel .panels>a:nth-child(even) {
+              background-color: lightblue;
+            }
+            
+            .carousel .panels>a:nth-child(odd) {
+              background-color: lightpink;
+            }
+            
+            .carousel .arrow {
+              position: absolute;
+              top: 50%;
+              z-index: 100;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 36px;
+              width: 36px;
+              border: none;
+              outline: none;
+              border-radius: 50%;
+              background-color: rgba(31, 45, 61, .11);
+              cursor: pointer;
+              opacity: 0;
+              transition: all .4s;
+            }
+            
+            .carousel .btn-pre {
+              left: 10px;
+              transform: translateX(-10px) translateY(-50%);
+            }
+            
+            .carousel:hover .btn-pre {
+              opacity: 1;
+              transform: translateX(0) translateY(-50%);
+            }
+            
+            .carousel .btn-next {
+              right: 10px;
+              transform: translateX(10px) translateY(-50%);
+            }
+            
+            .carousel:hover .btn-next {
+              opacity: 1;
+              transform: translateX(0px) translateY(-50%);
+            }
+            
+            .carousel .arrow::before {
+              content: '';
+              display: block;
+              width: 10px;
+              height: 10px;
+              border-top: 3px solid #fff;
+              border-left: 3px solid #fff;
+            }
+            
+            .carousel .btn-pre::before {
+              transform: rotate(-45deg);
+            }
+            
+            .carousel .btn-next::before {
+              transform: rotate(135deg);
+            }
+            
+            .carousel .indicators {
+              position: absolute;
+              bottom: 10px;
+              left: 50%;
+              z-index: 100;
+              transform: translateX(-50%);
+              list-style: none;
+              margin: 0;
+              padding: 0;
+            }
+            
+            .carousel .indicators>li {
+              display: inline-block;
+              padding: 5px 0;
+              cursor: pointer;
+            }
+            
+            .carousel .indicators>li::before {
+              content: '';
+              display: block;
+              width: 30px;
+              height: 2px;
+              border-radius: 2px;
+              background: #c0c4cc;
+            }
+            
+            .carousel .indicators>li.active::before {
+              background: #fff;
+            }
+          </pre>
+          <pre class="js code_block">
+            const css = ($node, cssObj) => Object.assign($node.style, cssObj)
+    const Animation = {
+      slide($from, $to, direction) {
+        $from.style = ''
+        $to.style = ''
+        css($from, {
+          transform: `translateX(0)`,
+          zIndex: 10
+        })
+        css($to, {
+          transform: `translateX(${direction ==='right' ? '-' : ''}100%)`,
+          zIndex: 10
+        })
+        setTimeout(() => {
+          css($from, {
+            transform: `translateX(${direction ==='left' ? '-' : ''}100%)`,
+            transition: `all .4s`
+          })
+          css($to, {
+            transform: `translateX(0)`,
+            transition: `all .4s`
+          })
+        })
+      },
+
+      fade($from, $to) {
+        $from.style = ''
+        $to.style = ''
+
+        css($from, {
+          opacity: 1,
+          zIndex: 10
+        })
+        css($to, {
+          opacity: 0,
+          zIndex: 9
+        })
+        setTimeout(() => {
+          css($from, {
+            opacity: 0,
+            zIndex: 10,
+            transition: `all .4s`
+          })
+          css($to, {
+            opacity: 1,
+            zIndex: 9,
+            transition: `all .4s`
+          })
+        })
+        setTimeout(() => {
+          css($from, {
+            zIndex: 9
+          })
+          css($to, {
+            zIndex: 10
+          }), 400}
+        )
+      },
+
+      zoom($from, $to) {
+        $from.style = ''
+        $to.style = ''
+
+        css($from, {
+          transform: `scale(1)`,
+          opacity: 1,
+          zIndex: 10
+        })
+        css($to, {
+          transform: `scale(10)`,
+          opacity: 0,
+          zIndex: 9
+        })
+        setTimeout(() => {
+          css($from, {
+            transform: `scale(10)`,
+            opacity: 0,
+            zIndex: 10,
+            transition: `all .4s`
+          })
+          css($to, {
+            transform: `scale(1)`,
+            opacity: 1,
+            zIndex: 9,
+            transition: `all .4s`
+          })
+        })
+        setTimeout(() => {
+          css($from, {
+            zIndex: 9
+          })
+          css($to, {
+            zIndex: 10
+          })
+        }, 400)
+      }
+    }
+    class Carousel {
+      constructor($root, animation) {
+        this.$root = $root
+        this.$pre = $root.querySelector('.btn-pre')
+        this.$next = $root.querySelector('.btn-next')
+        this.$$indicators = $root.querySelectorAll('.indicators > li')
+        this.$$panels = $root.querySelectorAll('.panels > a')
+        this.animation = animation
+
+        this.bind()
+      }
+      bind() {
+        this.$pre.onclick = () => {
+          let fromIndex = this.getIndex()
+          let toIndex = this.getPreIndex()
+          this.setPage(fromIndex, toIndex, 'right')
+          this.setIndicator(toIndex)
+        }
+        this.$next.onclick = () => {
+          let fromIndex = this.getIndex()
+          let toIndex = this.getNextIndex()
+          this.setPage(fromIndex, toIndex, 'left')
+          this.setIndicator(toIndex)
+        }
+
+        this.$$indicators.forEach($indicator => $indicator.onclick = (e) => {
+          let fromIndex = this.getIndex()
+          let toIndex = [...this.$$indicators].indexOf(e.target)
+          this.setIndicator(toIndex)
+          let direction = fromIndex > toIndex ? 'right' : 'left'
+          this.setPage(fromIndex, toIndex, direction)
+        })
+      }
+      getIndex() {
+        return [...this.$$indicators].indexOf(this.$root.querySelector('.indicators .active'))
+      }
+      getPreIndex() {
+        return (this.getIndex() - 1 + this.$$indicators.length) % this.$$indicators.length
+      }
+      getNextIndex() {
+        return (this.getIndex() + 1) % this.$$indicators.length
+      }
+
+      setPage(fromIndex, toIndex, direction) {
+        this.animation(this.$$panels[fromIndex], this.$$panels[toIndex], direction)
+      }
+      setIndicator(index) {
+        this.$$indicators.forEach($indicator => $indicator.classList.remove('active'))
+        this.$$indicators[index].classList.add('active')
+      }
+      setAnimation(animation) {
+        this.animation = animation
+      }
+    }
+
+    let $carousel = document.querySelector('.carousel')
+    let carousel = new Carousel($carousel, Animation.slide)
+
+    document.querySelector('#animation-select').onchange = function () {
+      carousel.setAnimation(Animation[this.value])
+    }
+          </pre>
+        </div>
+      </div>
+
+
+      </div>
+      <div class="content">
+        <div class="show">
+          <h2>效果展示</h2>
+          <link rel="stylesheet" href="./styles/collapse.css">
+          只能打开一个
+          <div class="containers">
+              <div class="item">
+              <div class ="item-header active">一致性 Consistency</div>
+              <div class="item-content active">与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；<br>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+            </div>
+            <div class="item">
+              <div class ="item-header">反馈 Feedback</div>
+              <div class="item-content">控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；<br>
+              页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+            </div>
+            <div class="item">
+              <div class ="item-header">效率 Efficiency</div>
+              <div class="item-content">简化流程：设计简洁直观的操作流程；<br>
+                清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；<br>
+                帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+            </div>
+            <div class="item">
+              <div class ="item-header">可控 Controllability</div>
+              <div class="item-content">用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；<br>
+              结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+            </div>
+          </div>
+          可同时打开
+          <div class="containers">
+            <div class="item">
+              <div class ="item-header active">一致性 Consistency</div>
+              <div class="item-content active">与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；<br>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
+            </div>
+            <div class="item">
+              <div class ="item-header">反馈 Feedback</div>
+              <div class="item-content">控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；<br>
+              页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
+            </div>
+            <div class="item">
+              <div class ="item-header">效率 Efficiency</div>
+              <div class="item-content">简化流程：设计简洁直观的操作流程；<br>
+                清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；<br>
+                帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
+            </div>
+            <div class="item">
+              <div class ="item-header">可控 Controllability</div>
+              <div class="item-content">用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；<br>
+              结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
+            </div>
+          </div>
+          <button class="showCode">展示/隐藏代码</button>
+        </div>
+      <div class="display_components">
+        <div class="control">
+          <button class="click btn-h active">HTML</button>
+          <button class="click btn-c">CSS</button>
+          <button class="click btn-j">JS</button>
+        </div>
+        <div class="code">
+          <pre class="html code_block">
+            &ltdiv class="container"&gt
+            &ltdiv class="item"&gt
+              &ltdiv class ="item-header active"&gt一致性 Consistency&lt/div&gt
+              &ltdiv class="item-content active"&gt与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；&ltbr&gt在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。&lt/div&gt
+            &lt/div&gt
+            &ltdiv class="item"&gt
+              &ltdiv class ="item-header"&gt反馈 Feedback&lt/div&gt
+              &ltdiv class="item-content"&gt控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；&ltbr&gt
+              页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。&lt/div&gt
+            &lt/div&gt
+            &ltdiv class="item"&gt
+              &ltdiv class ="item-header"&gt效率 Efficiency&lt/div&gt
+              &ltdiv class="item-content"&gt简化流程：设计简洁直观的操作流程；&ltbr&gt
+                清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；&ltbr&gt
+                帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。&lt/div&gt
+            &lt/div&gt
+            &ltdiv class="item"&gt
+              &ltdiv class ="item-header"&gt可控 Controllability&lt/div&gt
+              &ltdiv class="item-content"&gt用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；&ltbr&gt
+              结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。&lt/div&gt
+            &lt/div&gt
+          &lt/div&gt
+          </pre>
+          <pre class="css code_block">
+            .container{
+              max-width: 800px;
+              margin: 30px auto;
+              padding: 16px;
+              border-radius: 6px;
+              box-shadow: 0 0 2px 2px rgba(0,0,0,0.3);
+            }
+            .item{
+              border-top: 1px solid #999;
+            }
+            .item:nth-child(4){
+              border-bottom: 1px solid #999;
+            }
+            .item .item-header{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 13px;
+              color: #303030;
+              font-weight: 500;
+              line-height: 40px;
+        
+            }
+            .item .item-header:hover{
+              cursor: pointer;
+            }
+            .item .item-header::after{
+              content: '';
+              margin-left: auto;
+              width: 7px;
+              height: 7px;
+              border-top: 1px solid #999;
+              border-right: 1px solid #999;
+              transform: rotate(45deg);
+              transition: all .3s;
+            }
+            .item.active .item-header::after{
+              transform: rotate(135deg);
+            }
+        
+            .item .item-content{
+              font-size: 14px;
+              color: #666;
+              height: 0;
+              overflow: hidden;
+              transition: all .4s;
+            }
+            .item.active .item-content{ 
+              height: auto;
+              padding-bottom: 16px;
+            }
+          </pre>
+          <pre class="js code_block">
+            class Collapse {
+              constructor($root, type=1) {
+                this.$root = $root
+                this.$$items = $root.querySelectorAll('.item')
+                this.type = type
+            
+                this.bind()
+              }
+              bind() {
+                let self = this
+                this.$$items.forEach($item => $item.onclick = function(){
+                if(self.type === 2) {
+                  this.classList.toggle('active')
+                }else if(self.type === 1){
+                  self.$$items.forEach($item => $item.classList.remove('active'))
+                  this.classList.toggle('active')
+                 }
+            
+                } )
+              }
+            }
+            
+            new Collapse(document.querySelectorAll('.container')[0], 1)
+            new Collapse(document.querySelectorAll('.container')[1], 2)
+          </pre>
+        </div>
+      </div>
+
+
+      </div>
+      <div class="content">
+        <div class="show">
+          <h2>效果展示</h2>
+          <link rel="stylesheet" href="./styles/return.css">
+          <a href="http://js.jirengu.com/feveh">线上预览</a><br/>
+      
+          <button class="showCode">展示/隐藏代码</button>
+        </div>
+        <div class="display_components">
+        <div class="control">
+          <button class="click btn-h active">HTML</button>
+          <button class="click btn-c">CSS</button>
+          <button class="click btn-j">JS</button>
+        </div>
+        <div class="code">
+          <pre class="html code_block">
+            &ltdiv class="return"&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltp&gt这是内容&lt/p&gt
+            &ltbutton id="btn-top"&gt回到顶部&lt/button&gt
+          </pre>
+          <pre class="css code_block">
+            #btn-top {
+              position: fixed;
+              bottom: 50px;
+              right: 10px;
+              padding: 8px;
+              font-size: 16px;
+              font-weight: 500;
+              box-shadow: 0 0 2px 0px rgba(0,0,0,0.3);
+              cursor: pointer;
+              display: none;
+            }
+            
+            #btn-top.show{
+              display: block;
+            }
+          </pre>
+          <pre class="js code_block">
+            let $returntop = document.querySelector('#btn-top')
+            window.onscroll = function() {
+              if (window.scrollY > 150 ) {
+                $returntop.classList.add('show')
+              } else {
+                $returntop.classList.remove('show')
+              }
+            }
+            $returntop.onclick = function() {
+              window.scrollTo ({
+                top: 0,
+                behavior: 'smooth'
+              })
+            }
+          </pre>
+        </div>
+      </div>
+
+
+      </div>
+
+
+      </div>
+    </main>
+  </div>
+</body>
+<script src="index.js"></script>
+<script src="./options/dialog.js"></script>
+<script src="./options/tooltip.js"></script>
+<script src="./options/carousel.js"></script>
+<script src="./options/collaspe.js"></script>
+
+</html>

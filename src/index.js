@@ -39,8 +39,11 @@ const Menue = {
   init() {
     this.$$tabs = $$('#main nav .title')
     this.$$contents = $$('#main .content')
+    this.$close = $('#main main .icon-close')
+    this.$main = $('#main')
     
     this.bind()
+    this.close()
   },
 
   bind() {
@@ -52,6 +55,12 @@ const Menue = {
         this.$$contents[index].classList.add('active')
         new ShowComponents(this.$$contents[index])
       })
+    },
+
+    close() {
+      this.$close.onclick = () => {
+        this.$main.classList.remove('active')
+      }
     }
   }
 

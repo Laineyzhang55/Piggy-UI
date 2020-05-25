@@ -950,7 +950,50 @@
         <div class="show">
           <h2>效果展示</h2>
           <link rel="stylesheet" href="./styles/return.css">
-          <a href="http://js.jirengu.com/feveh">线上预览</a><br/>
+          <style>
+            #btn-top {
+              position: fixed;
+              bottom: 50px;
+              right: 55px;
+              padding: 8px;
+              font-size: 16px;
+              font-weight: 500;
+              box-shadow: 0 0 2px 0px rgba(0,0,0,0.3);
+              cursor: pointer;
+            }
+        
+          </style>
+          <p id="top">这是内容</p>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <P>这是内容</P>
+          <button id="btn-top">回到顶部</button>
+        
+          <script>
+            let $returntop = document.querySelector('#btn-top')
+            
+            $returntop.onclick = function() {
+                document.querySelector('#top').scrollIntoView() ({
+                behavior: 'smooth'
+              })
+            }
+          </script>
       
           <button class="showCode">展示/隐藏代码</button>
         </div>

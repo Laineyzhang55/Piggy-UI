@@ -1,6 +1,6 @@
 # Piggy UI
 ## 项目背景
-在使用antd组件时，发现很多的功能模块用js也是可以实现，因此开始尝试用js改造。
+常使用像antd、Element UI等组件，但是其中的一些组件用原生JS其实也是可以实现的，本项目就是用JS实现了其中的部分效果，在一些简单的项目中就可以使用class组件的方式，并且能够实现代码的复用。
 
 ## 项目构成
 项目包括栅格布局、carousel、collaspe、dialog、message、tabs、tooltip七个部分组成，
@@ -16,6 +16,7 @@
 ## 技术介绍
  - 本项目使用了js的class组件方式搭建；
  - 主页面下一页按钮(字体图标)的动画效果，使用了CSS3 的transform效果以及DOM的Class添加操作;
+ 
  ```css
     #home .icon-nextPage {
     position: fixed;
@@ -33,7 +34,8 @@
     }
  ```
  JS代码
-```js
+```
+
 class Home {
   constructor($root){
     this.$root = $root
@@ -57,7 +59,7 @@ class Home {
  - 主页的侧边栏使用了同样的方法，在点击时展示不同的效果，通过操控class属性控制
  - 效果展示页和侧边栏标题一一对应,创建了Menue组件；
 
- ```js
+ ```
 const Menue = {
   init() {
     //$$表示document.querySelectorAll()
@@ -83,11 +85,11 @@ const Menue = {
   }
 
  ```
- 
+
  - 使用了Menue组件同样的方法设置了ShowComponents组件控制每个效果的代码展示；在Menue组件中引用ShowComponents组件就实现了当前效果与代码的绑定；
  - 创建App组件，通过App的init方法将所有组件初始化启动项目；
 
- ```js
+ ```
     const App = {
       init() {
         [...arguments].forEach(Module => Module.init())

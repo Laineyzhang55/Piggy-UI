@@ -32,6 +32,7 @@
     transform: translateX(0);
     }
  ```
+ JS代码
 ```js
 class Home {
   constructor($root){
@@ -50,9 +51,12 @@ class Home {
     }
   }
 }
+
 ```
+
  - 主页的侧边栏使用了同样的方法，在点击时展示不同的效果，通过操控class属性控制
  - 效果展示页和侧边栏标题一一对应,创建了Menue组件；
+
  ```js
 const Menue = {
   init() {
@@ -66,7 +70,6 @@ const Menue = {
     this.bind()
     this.close()
   },
-
   bind() {
       this.$$tabs.forEach($tab => $tab.onclick = ()=>{
         this.$$tabs.forEach($node =>$node.classList.remove('active'))
@@ -78,9 +81,12 @@ const Menue = {
       })
     },
   }
+
  ```
+ 
  - 使用了Menue组件同样的方法设置了ShowComponents组件控制每个效果的代码展示；在Menue组件中引用ShowComponents组件就实现了当前效果与代码的绑定；
  - 创建App组件，通过App的init方法将所有组件初始化启动项目；
+
  ```js
     const App = {
       init() {

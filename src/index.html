@@ -17,17 +17,282 @@
   </div>
   <div id="main">
     <nav>
-      <div class="title active"><span class="iconfont icon-reminder"></span>弹窗提示</div>
+      <div class="title active"><span class="iconfont icon-quanxuan"></span>栅格布局</div>
+      <div class="title"><span class="iconfont icon-reminder"></span>Dialog</div>
       <div class="title"><span class="iconfont icon-tooltip"></span>Tooltip</div>
-      <div class="title"><span class="iconfont icon-carousel"></span>轮播</div>
-      <div class="title"><span class="iconfont icon-collaspe"></span>手风琴效果</div>
-      <div class="title"><span class="iconfont icon-top"></span>回到顶部</div>
-      <div class="title"><span class="iconfont icon-fixed"></span>锚点</div>
-      <div class="title"><span class="iconfont icon-quanxuan"></span>全选</div>
+      <div class="title"><span class="iconfont icon-carousel"></span>Carousel</div>
+      <div class="title"><span class="iconfont icon-collaspe"></span>Collapse</div>
+      <div class="title"><span class="iconfont icon-top"></span>Message</div>
+      <div class="title"><span class="iconfont icon-fixed"></span>Tabs</div>
     </nav>
     <main>  
       <span class="iconfont icon-close"></span>
       <div class="content active">
+        <div class="show">
+          <h2>效果展示</h2>
+          <link rel="stylesheet" href="./styles/gride.css">
+          <div class="container gride">
+            <div class="row">
+                <div class="col-xs-3 col-md-3">第一行</div>
+                <div class="col-xs-3 col-md-3">第二行</div>
+                <div class="col-xs-3 col-md-3">第三行</div>
+                <div class="col-xs-3 col-md-3">第四行</div>
+              </div>
+            </div>
+            <div class="container gride">
+              <div class="row">
+                <div class="aside col-md-3">aside</div>
+                <div class="main col-md-9">main</div>
+            </div>
+            </div>
+          <button class="showCode">展示/隐藏代码</button>
+        </div>
+      <div class="display_components">
+        <div class="control">
+          <button class="click btn-h active">HTML</button>
+          <button class="click btn-c">CSS</button>
+          <button class="click btn-j">JS</button>
+        </div>
+        <div class="code">
+          <pre class="html code_block">
+    &ltdiv class="container"&gt
+    &ltdiv class="row"&gt
+        &ltdiv class="col-xs-3 col-md-3"&gt第一行&lt/div&gt
+        &ltdiv class="col-xs-3 col-md-3"&gt第二行&lt/div&gt
+        &ltdiv class="col-xs-3 col-md-3"&gt第三行&lt/div&gt
+        &ltdiv class="col-xs-3 col-md-3"&gt第四行&lt/div&gt
+      &lt/div&gt
+    &lt/div&gt
+    &ltdiv class="container"&gt
+      &ltdiv class="row"&gt
+        &ltdiv class="aside col-md-3"&gtaside&lt/div&gt
+        &ltdiv class="main col-md-9"&gtmain&lt/div&gt
+    &lt/div&gt
+    &lt/div&gt
+          </pre>
+          <pre class="css code_block">
+        
+    .gride{
+    background: yellow;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: auto;
+    margin-right: auto; 
+    }
+    .row{
+    margin-left: -10px;
+    margin-right: -10px;
+    }
+    .gride::after{
+    content: '';
+    display: block;
+    clear: both;
+    }
+    @media (min-width: 770px) {
+    .gride{
+      width: 750px;
+    }
+    }
+    @media (min-width: 990px) {
+    .gride{
+      width: 960px;
+    }
+    }
+    @media (min-width: 1200px) {
+    .gride{
+      width: 1180px;
+    }
+    }
+    .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+    float: left;
+    }
+
+    .col-xs-12 {
+    width: 100%;
+    }
+    .col-xs-11 {
+    width: 91.66666667%;
+    }
+    .col-xs-10  {
+    width: 83.33333333%;
+    }
+    .col-xs-9 {
+    width: 75%;
+    }
+    .col-xs-8 {
+    width: 66.66666667%;
+    }
+    .col-xs-7 {
+    width: 58.33333333%;
+    }
+    .col-xs-6 {
+    width: 50%;
+    }
+    .col-xs-5 {
+    width: 41.66666667%;
+    }
+    .col-xs-4 {
+    width: 33.33333333%;
+    }
+    .col-xs-3 {
+    width: 25%;
+    }
+    .col-xs-2 {
+    width: 16.66666667%;
+    }
+    .col-xs-1 {
+    width: 8.33333333%;
+    }
+    @media (min-width: 770px){
+    .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12{
+      float:left;
+    }
+    }
+    .col-sm-12 {
+    width: 100%;
+    }
+    .col-sm-11 {
+    width: 91.66666667%;
+    }
+    .col-sm-10 {
+    width: 83.33333333%;
+    }
+    .col-sm-9 {
+    width: 75%;
+    }
+    .col-sm-8 {
+    width: 66.66666667%;
+    }
+    .col-sm-7 {
+    width: 58.33333333%;
+    }
+    .col-sm-6 {
+    width: 50%;
+    }
+    .col-sm-5 {
+    width: 41.66666667%;
+    }
+    .col-sm-4 {
+    width: 33.33333333%;
+    }
+    .col-sm-3 {
+    width: 25%;
+    }
+    .col-sm-2 {
+    width: 16.66666667%;
+    }
+    .col-sm-1 {
+    width: 8.33333333%;
+    }
+
+    @media (min-width: 990px) {
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: left;
+    }
+    }
+    .col-md-12 {
+    width: 100%;
+    }
+    .col-md-11 {
+    width: 91.66666667%;
+    }
+    .col-md-10 {
+    width: 83.33333333%;
+    }
+    .col-md-9 {
+    width: 75%;
+    }
+    .col-md-8 {
+    width: 66.66666667%;
+    }
+    .col-md-7 {
+    width: 58.33333333%;
+    }
+    .col-md-6 {
+    width: 50%;
+    }
+    .col-md-5 {
+    width: 41.66666667%;
+    }
+    .col-md-4 {
+    width: 33.33333333%;
+    }
+    .col-md-3 {
+    width: 25%;
+    }
+    .col-md-2 {
+    width: 16.66666667%;
+    }
+    .col-md-1 {
+    width: 8.33333333%;
+    }
+
+    @media (min-width: 1200px) {
+    .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+    float: left;
+    }
+    }
+    .col-lg-12 {
+    width: 100%;
+    }
+    .col-lg-11 {
+    width: 91.66666667%;
+    }
+    .col-lg-10 {
+    width: 83.33333333%;
+    }
+    .col-lg-9 {
+    width: 75%;
+    }
+    .col-lg-8 {
+    width: 66.66666667%;
+    }
+    .col-lg-7 {
+    width: 58.33333333%;
+    }
+    .col-lg-6 {
+    width: 50%;
+    }
+    .col-lg-5 {
+    width: 41.66666667%;
+    }
+    .col-lg-4 {
+    width: 33.33333333%;
+    }
+    .col-lg-3 {
+    width: 25%;
+    }
+    .col-lg-2 {
+    width: 16.66666667%;
+    }
+    .col-lg-1 {
+    width: 8.33333333%;
+    }
+
+
+
+    .row > * {
+    border: 1px solid;
+    text-align: center;
+    }
+
+    .aside {
+    min-height: 200px;
+    background: pink;
+    }
+
+    .main {
+    min-height: 300px;
+    background: grey;
+    }   
+          </pre>
+          <pre class="js code_block">
+    null
+          </pre>
+        </div>
+      </div>
+      </div>
+      <div class="content">
         <div class="show">
           <h2>效果展示</h2>
           <link rel="stylesheet" href="./styles/dialog.css">
@@ -943,58 +1208,20 @@
           </pre>
         </div>
       </div>
-
-
       </div>
       <div class="content">
         <div class="show">
           <h2>效果展示</h2>
-          <link rel="stylesheet" href="./styles/return.css">
-          <style>
-            #btn-top {
-              position: fixed;
-              bottom: 50px;
-              right: 55px;
-              padding: 8px;
-              font-size: 16px;
-              font-weight: 500;
-              box-shadow: 0 0 2px 0px rgba(0,0,0,0.3);
-              cursor: pointer;
-            }
-        
-          </style>
-          <p id="top">这是内容</p>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <P>这是内容</P>
-          <button id="btn-top">回到顶部</button>
-        
-          <script>
-            let $returntop = document.querySelector('#btn-top')
-            
-            $returntop.onclick = function() {
-                document.querySelector('#top').scrollIntoView() ({
-                behavior: 'smooth'
-              })
-            }
-          </script>
-      
+          <link rel="stylesheet" href="./styles/message.css">
+          <div class="container" id="message">
+            <h2>Message消息提示2</h2>
+            <div class="btn-group">
+              <button id="success">成功</button>
+              <button id="warning">警告</button>
+              <button id="infor">消息</button>
+              <button id="danger">错误</button>
+            </div>
+          </div>
           <button class="showCode">展示/隐藏代码</button>
         </div>
         <div class="display_components">
@@ -1005,108 +1232,137 @@
         </div>
         <div class="code">
           <pre class="html code_block">
-    &ltdiv class="return"&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltp&gt这是内容&lt/p&gt
-    &ltbutton id="btn-top"&gt回到顶部&lt/button&gt
+    &ltdiv class="container" id="message"&gt
+    &lth2&gtMessage消息提示2&lt/h2&gt
+    &ltdiv class="btn-group"&gt
+      &ltbutton id="success"&gt成功&lt/button&gt
+      &ltbutton id="warning"&gt警告&lt/button&gt
+      &ltbutton id="infor"&gt消息&lt/button&gt
+      &ltbutton id="danger"&gt错误&lt/button&gt
+    &lt/div&gt
+    &lt/div&gt
           </pre>
           <pre class="css code_block">
-    #btn-top {
-      position: fixed;
-      bottom: 50px;
-      right: 10px;
-      padding: 8px;
-      font-size: 16px;
-      font-weight: 500;
-      box-shadow: 0 0 2px 0px rgba(0,0,0,0.3);
+    .container{
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 16px;
+      border-radius: 4px;
+      box-shadow: 0 0 2px 0px rgba(0,0,0,0.3)
+    }
+    .btn-group > button{
+      padding: 10px 16px;
+      font-size: 14px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
       cursor: pointer;
-      display: none;
+      outline: none;
+    }
+    .btn-group > button:hover{
+      color: lightskyblue;
+      border: 1px solid lightskyblue;
+    } 
+    .message{
+      position: f;
+      top: 10px;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      transform: translate(-50%, -50px);
+      padding: 10px 16px;
+      background-color: #67c23A;
+      font-size: 14px;
+      color: #ffffff;
+      border-radius: 4px;
+      opacity: 0;
+    }
+    .message.show{
+      transform: translate(-50%, 10px);
+      opacity: 1;
+    }
+    .message.success {
+      background-color: #67C23A;
+    }
+    .message.warning {
+      background-color: #E6A23C;
+    }
+    .message.info {
+      background-color: #909399;
+    } 
+    .message.danger {
+      background-color: #F56C6C;
+    }
+          </pre>
+          <pre class="js code_block">
+    class Message {
+      constructor({type = 'success', text = ''}) {
+        this.type = type
+        this.text = text
+    
+        this.render()
+        this.bind()
+      }
+
+      render(){
+        let $div = document.createElement('div')
+        this.$message = $div
+        $div.classList.add('message')
+        $div.classList.add(this.type)
+        let $text = document.createTextNode(this.text)
+        $div.appendChild($text)
+        document.querySelector('#message').appendChild($div)
+      }
+      bind(){
+        this.show()
+        setTimeout(() => this.destory(), 2000)
+      }
+      
+      show(){
+          this.$message.classList.add('show')
+      }
+      
+      destory(){
+        this.$message.classList.remove('show')
+        setTimeout(() => this.$message.parentNode.removeChild(this.$message), 2000)
+      }
+      
     }
     
-    #btn-top.show{
-      display: block;
+    document.querySelector('#success').onclick = function(){
+      new Message({text: '成功'})
     }
-          </pre>
-          <pre class="js code_block">
-    let $returntop = document.querySelector('#btn-top')
-    window.onscroll = function() {
-      if (window.scrollY > 150 ) {
-        $returntop.classList.add('show')
-      } else {
-        $returntop.classList.remove('show')
-      }
+    document.querySelector('#infor').onclick = function(){
+      new Message({text: '这是消息'})
     }
-    $returntop.onclick = function() {
-      window.scrollTo ({
-        top: 0,
-        behavior: 'smooth'
-      })
+    document.querySelector('#warning').onclick = function(){
+      new Message({text: '警告'})
     }
+    document.querySelector('#danger').onclick = function(){
+      new Message({text: '出现错误'})
+    } 
           </pre>
         </div>
       </div>
-
-
       </div>
       <div class="content">
         <div class="show">
           <h2>效果展示</h2>
-          <style>
-            .link{
-              position: absolute;
-              top: 0;
-              right: 0;
-              height: 30px;
-              margin: 40px 30px 0 0;
-              background: #eee;
-            }
-            .link span{
-              display: inline;
-              margin-left: 15px;
-              cursor: pointer;
-            }
-            .link span:hover{
-              color: lightblue;
-            }
-           .section {
-             height: 100vh;
-             overflow: hidden;
-           }
-            section {
-            height: 100vh;
-            background: pink;
-            margin-bottom: 20px;
-            border: 1px sold #000;
-          }
-          section:nth-child(odd) {
-            background: lightblue;
-          }
-          </style>
-        <body>
-          <div class="link">
-            <span onclick="javascript:document.getElementById('section1').scrollIntoView()">section1</span>
-            <span onclick="javascript:document.getElementById('section2').scrollIntoView()">section2</span>
-            <span onclick="javascript:document.getElementById('section3').scrollIntoView()">section3</span>
-            <span onclick="javascript:document.getElementById('section4').scrollIntoView()">section4</span>
+          <link rel="stylesheet" href="./styles/tab.css">
+          <div class="container tabs">
+            <div class="header">
+              <span class="title">用户管理</span>
+              <span class="title">配置管理</span>
+              <span class="title">角色管理</span>
+              <span class="title">定时任务补偿</span>
+              <span class="line"></span>
+            </div>
+            <div class="content">
+              <span class="explain active">用户管理</span>
+              <span class="explain">配置管理</span>
+              <span class="explain">角色管理</span>
+              <span class="explain">定时任务补偿</span>
+            </div>
           </div>
-         <div class="section">
-           <section id="section1">section1</section>
-           <section id="section2">section2</section>
-           <section id="section3">section3</section>
-           <section id="section4">section4</section>
-         </div>
-      
           <button class="showCode">展示/隐藏代码</button>
         </div>
         <div class="display_components">
@@ -1117,130 +1373,112 @@
         </div>
         <div class="code">
           <pre class="html code_block">
-    &ltdiv class="link"&gt
-    &ltspan class="section1" &gtsection1&lt/span&gt
-    &ltspan class="section2" &gtsection2&lt/span&gt
-    &ltspan class="section3" &gtsection3&lt/span&gt
-    &ltspan class="section4" &gtsection4&lt/span&gt
-  &lt/div&gt
-  &ltdiv&gt
-    &ltsection id="section1"&gtsection1&lt/section&gt
-    &ltsection id="section2"&gtsection2&lt/section&gt
-    &ltsection id="section3"&gtsection3&lt/section&gt
-    &ltsection id="section4"&gtsection4&lt/section&gt
+    &ltdiv class="container tabs"&gt
+    &ltdiv class="header"&gt
+      &ltspan class="title"&gt用户管理&lt/span&gt
+      &ltspan class="title"&gt配置管理&lt/span&gt
+      &ltspan class="title"&gt角色管理&lt/span&gt
+      &ltspan class="title"&gt定时任务补偿&lt/span&gt
+      &ltspan class="line"&gt&lt/span&gt
+    &lt/div&gt
+    &ltdiv class="content"&gt
+      &ltspan class="explain active"&gt用户管理&lt/span&gt
+      &ltspan class="explain"&gt配置管理&lt/span&gt
+      &ltspan class="explain"&gt角色管理&lt/span&gt
+      &ltspan class="explain"&gt定时任务补偿&lt/span&gt
+    &lt/div&gt
   &lt/div&gt
           </pre>
-      
           <pre class="css code_block">
-    .link{
-      position:fixed;
-      top: 0;
-      right: 0;
-      height: 30px;
-      background: #eee;
+    .tabs {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 16px;
+      font-size: 14px;
+      color: #444;
+      border-radius: 4px;
+      box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.4);
     }
-    .link span{
-      display: inline
-      margin-left: 15px;
+
+    .tabs .header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+      line-height: 3;
+    }
+
+    .tabs .title {
+      outline: none;
+      border: none;
       cursor: pointer;
+      margin-right: 30px;
     }
-    section {
-    height: 100vh;
-    background: pink;
-    border: 1px sold #000;
+
+    .tabs .title:hover {
+      color: blue;
     }
-    section:nth-child(odd) {
-    background: lightblue;
+
+    .tabs .header .title.active {
+      color: blue;
     }
+
+    .tabs .header .line {
+      position: absolute;
+      transform: translateX(0);
+      top: 100%;
+      width: 50px;
+      height: 1px;
+      background-color: blue;
+      transition: all .4s;
+    }
+
+
+    .tabs .content .explain {
+      font-size: 16px;
+      display: none;
+    }
+
+    .tabs .content .explain.active {
+      display: block;
+    } 
           </pre>
           <pre class="js code_block">
-    document.querySelector('.link .section1').onclick =function(){
-      document.querySelector('#section1').scrollIntoView(true)
-    }
-    document.querySelector('.link .section2').onclick =function(){
-      document.querySelector('#section2').scrollIntoView(true)
-    }
-    document.querySelector('.link .section3').onclick =function(){
-      document.querySelector('#section3').scrollIntoView(true)
-    }
-    document.querySelector('.link .section4').onclick =function(){
-      document.querySelector('#section4').scrollIntoView(true)
-    }
-          </pre>
-        </div>
-      </div>
-
-
-      </div>
-      <div class="content">
-        <div class="show">
-          <h2>效果展示</h2>
-          <input class="select-all" type="checkbox"> 全选
-          <ul>
-            <li class="select"><input type="checkbox">1</li>
-            <li class="select"><input type="checkbox">2</li>
-            <li class="select"><input type="checkbox">3</li>
-            <li class="select"><input type="checkbox">4</li>
-            <li class="select"><input type="checkbox">5</li>
-          </ul>
-          <script>
-            let selectAll = document.querySelector('.select-all')
-            let itemList = document.querySelectorAll('.select')
-
-            selectAll.onclick = function(e) {
-              if(selectAll.checked) {
-                itemList.forEach(node => {
-
-                  node.querySelector('input').checked = true
-                })
-              } else {
-                itemList.forEach(node => {
-                  node.querySelector('input').checked = false
-                })
-              
-              }
-            }
-          </script>
-          <button class="showCode">展示/隐藏代码</button>
-        </div>
-        <div class="display_components">
-        <div class="control">
-          <button class="click btn-h active">HTML</button>
-          <button class="click btn-c">CSS</button>
-          <button class="click btn-j">JS</button>
-        </div>
-        <div class="code">
-          <pre class="html code_block">
-    &ltinput class="select-all" type="checkbox"&gt 全选
-    &ltul&gt
-      &ltli class="select"&gt&ltinput type="checkbox"&gt1&lt/li&gt
-      &ltli class="select"&gt&ltinput type="checkbox"&gt2&lt/li&gt
-      &ltli class="select"&gt&ltinput type="checkbox"&gt3&lt/li&gt
-      &ltli class="select"&gt&ltinput type="checkbox"&gt4&lt/li&gt
-      &ltli class="select"&gt&ltinput type="checkbox"&gt5&lt/li&gt
-    &lt/ul&gt
-          </pre>
-          <pre class="css code_block">
-          </pre>
-          <pre class="js code_block">
-    let selectAll = document.querySelector('.select-all')
-    let itemList = document.querySelectorAll('.select')
-
-    selectAll.onclick = function(e) {
-      if(selectAll.checked) {
-        itemList.forEach(node => {
-          node.querySelector('input').checked = true
-        })
-      } else {
-        itemList.forEach(node => {
-          node.querySelector('input').checked = false
+    class Tabs {
+      constructor($root) {
+        this.$root = $root
+        this.$$titles = $root.querySelectorAll('.container .header .title')
+        this.$$explains = $root.querySelectorAll('.container .content .explain')
+        this.$line = $root.querySelector('.line')
+    
+        this.init()
+        this.bind()
+      }
+      init(){
+        this.$line.style.width = this.$$titles[0].offsetWidth + 'px'
+      }
+      bind() {
+        let self = this
+        this.$$titles.forEach($title => {
+          $title.onclick = function (e) {
+            self.$$titles.forEach($title => $title.classList.remove('active'))
+            this.classList.add('active')
+    
+            self.$line.style.width = this.offsetWidth + 'px'
+            self.$line.style.transform = `translateX(${this.offsetLeft}px)`
+    
+            let index = [...self.$$titles].indexOf(this)
+            self.$$explains.forEach($explain => $explain.classList.remove('active'))
+            self.$$explains[index].classList.add('active')
+          }
         })
       }
     }
+    
+    new Tabs(document.querySelector('.tabs'))
           </pre>
         </div>
-      </div>
-
       </div>
       </div>
     </main>
@@ -1251,5 +1489,6 @@
 <script src="./options/tooltip.js"></script>
 <script src="./options/carousel.js"></script>
 <script src="./options/collaspe.js"></script>
-
+<script src="./options/message.js"></script>
+<script src="./options/tab.js"></script>
 </html>

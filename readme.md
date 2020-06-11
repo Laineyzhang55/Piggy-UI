@@ -3,7 +3,7 @@
 常使用像antd、Element UI等组件，但是其中的一些组件用原生JS其实也是可以实现的，本项目就是用JS实现了其中的部分效果，在一些简单的项目中就可以使用class组件的方式，并且能够实现代码的复用。
 
 ## 项目构成
-项目包括栅格布局、carousel、collaspe、dialog、message、tabs、tooltip七个部分组成，
+项目包括carousel、collaspe、dialog、message、tabs、tooltip六个部分组成，
 提供了在线效果预览和代码查看功能。
 
 ## 操作提示
@@ -100,5 +100,5 @@ const Menue = {
     App.init(Open, Menue)
  ```
 ## 项目总结
-主要使用到了CSS3的偏移，flex布局，JavaScript的数组的操作方法如Foreach等，ES6的展开操作符、let、const、箭头函数等；DOM的操作；@media移动端适配等。
+主要使用到了CSS3的偏移，flex布局，JavaScript的数组的操作方法如Foreach等，ES6的展开操作符、let、const、箭头函数等；DOM的操作等。
 
